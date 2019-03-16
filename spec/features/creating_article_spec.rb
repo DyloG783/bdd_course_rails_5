@@ -14,7 +14,7 @@ RSpec.feature "Creating Articles" do
     click_button "Create Article"
     
     expect(page).to have_content("Article has been created")
-    assert_current_path(articles_path)
+    assert_current_path(articles_path) 
     # expect(page).to eq(articles_path) # method not working because it returns "~<capybara session>"
   end
 end

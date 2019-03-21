@@ -1,3 +1,4 @@
+
 require "rails_helper"
 
 RSpec.feature "Listing Articles" do
@@ -21,10 +22,4 @@ RSpec.feature "Listing Articles" do
     expect(page).to have_link(@article1.title)
     expect(page).to have_link(@article2.title)
   end
-  
-  
-  
-  
-  
-  
 end

@@ -8,6 +8,7 @@ RSpec.feature "Listing Articles" do
     john = User.create(email: "john@example.com", password: "password")
     @article1 = Article.create(title: "The first article", body: "test article 1", user: john)
     @article2 = Article.create(title: "The second article", body: "test article 2", user: john)
+    
   end
   
   scenario "A user lists all articles" do

@@ -22,7 +22,7 @@ RSpec.feature "Creating Articles" do
     expect(page).to have_content("Article has been created")
     assert_current_path(articles_path) 
       # expect(page).to eq(articles_path) # method not working because it returns "~<capybara session>"
-      # expect(page).to have_content("Created by: #{@john.email}") # method not working because some pages cant render "article.user.email"
+    expect(page).to have_content("Created by: #{@john.email}") # method not working because some pages cant render "article.user.email"
   end
   
   scenario "A user fails to create a new article" do

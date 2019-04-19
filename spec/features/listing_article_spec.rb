@@ -5,14 +5,39 @@ RSpec.feature "Listing Articles" do
   
   
   before do
-    john = User.create(email: "john@example.com", password: "password")
-    @article1 = Article.create(title: "The first article", body: "test article 1", user: john)
-    @article2 = Article.create(title: "The second article", body: "test article 2", user: john)
+    @john = User.create(email: "john@example.com", password: "password")
+    @article1 = Article.create(title: "The first article", body: "test article 1", user: @john)
+    @article2 = Article.create(title: "The second article", body: "test article 2", user: @john)
+  end
+  
+  scenario "With articles crete and users not signed in" do
+    visit "/"
     
+    expect(page).to have_content(@article1.title)
+    expect(page).to have_content(@article1.body)
+    
+    expect(page).to have_content(@article2.title)
+    expect(page).to have_content(@article2.body)
+    expect(page).to have_link(@article1.title)
+    expect(page).to have_link(@article2.title)
+    expect(page).not_to have_link("New Article")
+  end
+  
+   scenario "With articles crete and users signed in" do
+     login_as(@john)
+    visit "/"
+    
+    expect(page).to have_content(@article1.title)
+    expect(page).to have_content(@article1.body)
+    
+    expect(page).to have_content(@article2.title)
+    expect(page).to have_content(@article2.body)
+    expect(page).to have_link(@article1.title)
+    expect(page).to have_link(@article2.title)
+    expect(page).to have_link("New Article")
   end
   
   scenario "A user lists all articles" do
-    
     visit "/"
     
     expect(page).to have_content(@article1.title)

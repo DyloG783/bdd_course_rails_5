@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   before_action :set_article
   
+  #tesakt
   def create
     unless current_user
       flash[:alert] = "Please sign in or sign up first"
